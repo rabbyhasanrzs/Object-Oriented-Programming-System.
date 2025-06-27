@@ -1,0 +1,331 @@
+
+// What is a Constructor?
+                    -> A constructor is a special function in a class that is automatically called when an object is 
+                       created.Its job is to initialize the object (i.e., set initial values for data members).
+
+    // Key Point :
+            --> Same name as class.
+            --> Constructor doesn't have a return type.
+            --> Only called once (automatically),at object creation.
+            --> Memory allocation happens when constructor is called.
+
+
+------------------------------------------>>
+
+// Types of Constructors :
+            --> 1. Default Constructor
+
+        *** Takes no parameters.
+
+
+                        class Student {
+                        public:
+                            Student() {
+                                cout << "Default constructor called" << endl;
+                            }
+                        };
+
+
+                --> 2. Parameterized Constructor
+
+        *** Takes arguments to initialize values.
+
+                        class Student {
+                        public:
+                            int age;
+                            Student(int a) {
+                                age = a;
+                            }
+                        };
+
+
+                --> 3. Copy Constructor
+
+        *** Creates a copy of an existing object.
+
+
+                        Student(const Student &s) {
+                            age = s.age;
+                        }
+
+
+------------------------------------------>>
+
+
+//  Why Use Constructors?
+
+                    1) Automatic Initialization of objects
+                    2) Makes code cleaner and safer
+                    3) Helps avoid uninitialized variables
+                    4) Supports overloading (multiple constructors in one class)
+
+// Constructor vs Method:
+                -----------------------------------------------------
+                Feature	-------> Constructor ---------->	Method
+                -----------------------------------------------------
+                Name	-------> Same as class -------->	Any name
+                Return type --->No return type---->	Has return type
+                Called -------> when Object is created ----->Called manually
+                Purpose	----->   Initializes object ----->	Performs actions
+
+
+
+
+------------------------------------------>>
+
+//   This pointer:
+                 -> this is a special pointer in C++ that points to the current object.
+                    this->prop is same as *(this).prop
+
+
+// Why use `this` in a Constructor : 
+                --> We use the this pointer in a constructor **when the parameter names are the same as the data 
+                    members.
+
+---
+
+// Problem Without this pointer:
+
+                                class Student {
+                                private:
+                                    int age;
+
+                                public:
+                                    Student(int age) {
+                                        age = age;  // This sets the parameter to itself, not the member variable
+                                    }
+                                };
+
+
+                    -->   In the above example, age = age; assigns the parameter to itself, not the class's age.
+                          So the object's age remains uninitialized.
+
+
+//  Solution Using this pointer:
+
+
+                                class Student {
+                                private:
+                                    int age;
+
+                                public:
+                                    Student(int age) {
+                                        this->age = age;  // this->age refers to the member variable
+                                    }
+                                };
+
+
+                *** this->age means the class’s variable.
+                *** age means the parameter passed to the constructor.
+                *** So this correctly assigns the parameter to the object's variable.
+
+
+
+
+
+---------------------------------------->
+
+    // Copy Constructor:
+                 -> Special Constructor(default) used to copy properties of one object into another.
+
+                 // Example of default Copy Constructor.
+
+                        #include<iostream>
+                        using namespace std;
+                        class student{
+                           public:
+                              string name;
+                              student(string name){
+                                    cout<<"Hi i the example am default Copy Constructor"<<endl;
+                                    this->name=name;
+                              }
+                              void getinfo(){
+                                    cout<<"Name is = "<<name<<endl;
+                              }
+
+                        };
+                        int main() {
+                           student s1("RABBY");
+                           s1.getinfo();
+
+                           student s2(s1);
+                           s2.getinfo();
+                           return 0;
+                        }
+
+
+
+// Custom Copy Constructor:
+                Example : 
+
+                            class student{
+                                public:
+                                    string name;
+                                    student(string name){
+                                        cout<<"Hi i the example am default Copy Constructor"<<endl;
+                                        this->name=name;
+                                    }
+                                    student(const student &s1){ // Call by reference
+                                        cout<<"Hi i am a custom copy constructor"<<endl;
+                                        this->name=s1.name;
+
+                                    }
+                                    void getinfo(){
+                                        cout<<"Name is = "<<name<<endl;
+                                    }
+                            };
+                            int main() {
+                                student s1("RABBY");
+                                s1.getinfo();
+
+                                student s2(s1);  // Default Copy constructor
+                                s2.getinfo();
+                                return 0;
+                            }
+
+
+// Definition:
+ClassName(const ClassName &obj);
+                1) It takes a reference to an object (alias name) of the same class as a parameter.
+             It's called when:
+                2) An object is initialize from another ("ClassName obj2 = obj1;")
+
+// Behind the Scenes:
+
+                When you write:
+                Student s2 = s1;
+                        1) Memory is allocated for s2
+                        2) The copy constructor is called
+                        3) All data members of s1 are copied into s2
+
+
+
+// Why need to Custom Copy Constructor?
+
+            If your class has:
+                        1) Pointers.
+                        2) Dynamically allocated memory.
+                Then default copy constructor may cause shallow copy(just copying addresses (Call by reference)), which can lead to errors.
+
+
+//    Shallow & Deep Copy :
+                 -> A shallow copy of an object copies all of the member values from one objects to another.
+
+                 -> A deep copy ,on the other hand ,not only copies the member values but also makes copies of any dynamically allocated memory that the members point to.
+
+
+
+// Shallow Copy vs Deep Copy:
+
+                Shallow Copy         <<<<-------->>>>>           Deep Copy
+                ------------------------------------------------------------
+                        Copies memory addresses | Copies actual data
+                        Default behavior        | Requires custom copy constructor 
+                        point same memory add.  | point different memory addresses but component value same.
+
+
+
+
+
+
+
+
+//! ------>> Example for Deep copy Constructor  <------//
+
+
+
+                            #include<iostream>
+                            using namespace std;
+                            class student{
+                                public:
+                                    string name;
+                                    double* cgpaPtr;
+                                    student(string name,double cgpa){
+                                        cout<<"Hi i the example am default Copy Constructor"<<endl;
+                                        this->name=name;
+                                        cgpaPtr=new double;
+                                        *cgpaPtr=cgpa;
+                                    }
+
+                                    student(const student &s1){ // Call by reference
+                                        cout<<"Hi i am a custom copy constructor"<<endl;
+                                        this->name=s1.name;
+                                        cgpaPtr=new double;
+                                        *cgpaPtr=*s1.cgpaPtr;
+                                    }
+
+                                    void getinfo(){
+                                        cout<<"Name is = "<<name<<endl;
+                                        cout<<"CGPA is = "<<*cgpaPtr<<endl;
+                                    }
+
+                            };
+                            int main() {
+                                student s1("RABBY",3.95);
+                                s1.getinfo();
+
+                                student s2(s1);
+                                s2.name="OVI";
+                                *(s2.cgpaPtr)=3.0;
+                                s1.getinfo();
+                                s2.getinfo();
+                                return 0;
+                            }
+
+
+
+
+---------------------------------------->
+
+//    What is a Destructor?
+            -->
+                A destructor is a special member function in a class that is automatically called when an object is destroyed.
+                It is used to free resources like memory, files, or network connections that were allocated during the object’s lifetime.
+
+        Syntax:
+                ~ClassName();
+
+                1) It has the same name as the class.
+                2) Begins with a tilde (~).
+                3) Takes no parameters and has no return type.
+                4) If we not create it create automatically.
+                5) Don't need to called it called automatically.
+
+//      When is a Destructor Called?
+
+                1. When an object goes out of scope.
+                2. When you delete a dynamically created object using "delete".
+                        
+                        Example:
+
+                                    #include <iostream>
+                                    using namespace std;
+
+                                    class Student {
+                                    public:
+                                        Student() {
+                                            cout << "Constructor called" << endl;
+                                        }
+
+                                        ~Student() {
+                                            cout << "Destructor called" << endl;
+                                        }
+                                    };
+
+                                    int main() {
+                                        Student s1;  // Constructor is called here
+
+                                        // When main() ends, s1 is destroyed
+                                        // Destructor is automatically called
+                                        return 0;
+                                    }
+//  Why Do We Use Destructors?
+
+                1) To release memory (especially if you use "new" or dynamic memory).
+                2) To close files or network connections.
+                3) To avoid memory leaks.
+
+
+
+
+ 

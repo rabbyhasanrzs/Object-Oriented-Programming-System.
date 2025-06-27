@@ -1,0 +1,87 @@
+
+
+//  What is Inheritance?
+                -> 
+                    Inheritance is a feature of Object-Oriented Programming (OOP) that allows a class (child) to reuse the properties and behaviors of another class (parent).
+
+//   Real-Life Example:
+
+                1) A son inherits traits (like eye color or height) from his father.
+                2) In programming, a child class inherits variables and methods from a parent class.
+
+
+//   Basic Syntax (C++):
+
+
+                                class Parent {
+                                public:
+                                    void show() {
+                                        cout << "This is the parent class" << endl;
+                                    }
+                                };
+
+                                class Child : public Parent {
+                                public:
+                                    void display() {
+                                        cout << "This is the child class" << endl;
+                                    }
+                                };
+
+//   Usage:
+
+                                int main() {
+                                    Child c;
+                                    c.show();     // Inherited from Parent
+                                    c.display();  // Own method
+                                    return 0;
+                                }
+
+
+                
+
+
+//  Benefits of Inheritance:
+
+                1. Code Reusability –> No need to rewrite code in every class.
+                2. Improved Code Structure –> Keeps code organized using parent-child relationships.
+                3. Easy Maintenance –> Fixing bugs in the parent fixes them for all children.
+                4. Polymorphism Support –> Enables method overriding.
+
+
+
+// Important Terms:
+
+                            Term      --------->           Meaning                                  
+                ---------------------------------------------------------------- 
+                Parent/Base class       -->  The class being inherited from           
+                Child/Derived class     -->  The class that inherits                  
+                "public" inheritance    -->  Most common — public members stay public 
+
+
+
+// Mode of Inheritance:
+
+                    Derived cls         Derived cls     Derived cls
+    -----------------------------------------------------------------
+    Base cls   -->     Private M        Protect M        Public M
+                      --------------------------------------------
+    Private    -->     Not Inherited    Not Inherited   Not Inherited
+    Protected  -->     Private          Protected        Protected
+    Public     -->     Private          Protected         Public
+
+
+// Types of Inheritance:
+
+                    -> Single Inheritance
+                    -> Multilevel Inheritance
+                    -> Multiple Inheritance
+                    -> Hierarchical Inheritance
+                    -> Hybrid Inheritance
+
+                     Type   ------------->       Description                                  
+                    --------------------------------------------- 
+                    Single       -->  One child class inherits one parent class    
+                    Multilevel   -->  Derived from a derived class (grandchild)    
+                    Multiple     -->  One child inherits from more than one parent 
+                    Hierarchical -->  Multiple children inherit from one parent    
+                    Hybrid       -->  Combination of above types  

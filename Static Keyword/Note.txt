@@ -1,0 +1,202 @@
+ //--------------------------------------------> Static keyword ---------------------------------------------->//
+
+
+// ------->  static :
+                -> The static keyword in C++ is used to change the lifetime or behavior of a variable, function, or 
+                   class member.
+
+
+    // Static Variables:
+            Variables declared as static in a function are created & initialized once for the lifetime of the program . // in function
+
+            Static Variables in a are created & initialized once. They are shared by all the objects of the class . // in class
+
+    // Static Objects: For life time of the program existence.
+
+
+
+
+// ------------>  Uses of static in C++ :
+
+        //There are 4 main uses of static:
+                // 1.Static Variable (Inside a Function)
+
+                        1) It remembers its value between function calls.
+                        2) It is initialized only once.
+                            
+                            Example :
+
+                                void counter(){
+                                        static int count = 0;
+                                        count++;
+                                        cout << "Count: " << count << endl;
+                                }
+                                int main() {
+                                counter();
+                                counter();
+                                counter();
+                                return 0;
+                                }
+
+
+
+                // 2.Static Data Members (Inside a Class)
+
+                        1) Shared by all objects of the class.
+                        2) Only one copy exists in memory.
+
+                                class Student {
+                                 public:
+                                 static int count;
+                                 Student() {
+                                        count++;
+                                 }
+                                };
+
+                                int Student::count = 0;  // must be defined outside
+                                int main() {
+                                Student s1, s2, s3;
+                                cout << "Total Students: " << Student::count << endl;  
+                                
+                                }
+
+
+                    Note :  {
+                                // What does it mean :
+                                        int Student::count = 0;
+                                        -> This line is used to define and initialize a static data member(count) outside the class.
+
+
+
+
+
+                                //     Student::count
+
+                                        1) count is a static variable that belongs to the class Student, not to any specific object.
+                                        2) The :: is the scope resolution operator, used to say:
+
+                                                        --> "This `count` belongs to the `Student` class."
+
+
+                                //     Needed :
+
+                                        In C++, static variables declared inside a class must be defined outside the class.
+
+                                        // Inside the class:
+
+                                        class Student {
+                                                        public:
+                                                        static int count;  // Declaration only (no memory allocated yet)
+                                                        };
+
+                                        // Outside the class:
+                                                        int Student::count = 0;  // Definition and memory allocation
+
+                                // What is :: (Scope Resolution Operator)?
+
+                                                1) Tells the compiler which class, namespace, or scope a variable or function belongs to.
+                                                2) Used to access static members, or define them outside the class.
+
+                                                // Example:
+
+                                                        class MyClass {
+                                                         public:
+                                                             static int x;
+                                                             void printX();
+                                                        };
+
+                                                        int MyClass::x = 10;  // Definition outside the class
+
+                                                        void MyClass::printX() {
+                                                        cout << x << endl;
+                                                        }
+
+
+                                // Summary table :
+
+                                        Symbol                      ------------               Meaning                                                 
+                                        ------------------------------------------------------------------------------
+                                        ::                      -->     Scope resolution operator                               
+                                        Student::count          -->     Access count that belongs to class Student          
+                                        int Student::count = 0; -->     Define and initialize static variable outside the class 
+
+                            }
+
+
+
+
+
+
+
+
+
+                // 3. Static Member Functions
+
+                                1) Can access only static variables.
+                                2) Called using the class name (no object needed).
+
+                                                class Demo {
+                                                public:
+                                                static void show() {
+                                                        cout << "Static function called" << endl;
+                                                }
+                                                };
+
+                                                int main() {
+                                                Demo::show();  // Call without object
+                                                }
+
+
+                
+                
+                
+                
+                // 4.Static Global Variables / Functions
+
+                                1) Makes the variable/function private to the file(used in larger projects).
+                                2) Prevents external files from accessing them.
+
+                                static int x = 5;  // Only visible in this file
+
+
+                
+        Note : Static Object Example :
+                                #include<iostream>
+                                using namespace std;
+
+                                class ABC{
+                                 public:
+                                        ABC(){
+                                        cout<<"Constructor"<<endl;
+                                        }
+
+                                        ~ABC(){
+                                        cout<<"Destructor"<<endl;
+                                        }
+                                };
+
+                                int main() {
+                                        if (true)
+                                        {
+                                        static ABC obj;
+                                        }
+                                        cout<<"End of Main Function"<<endl;                              
+                                        return 0;
+                                }
+
+
+
+
+
+
+//  Summary Table:
+
+
+                       Use     --------------------------------       Behavior                                         
+                ------------------------------------------------------------------------------
+                static in function            -->  Remembers value between calls                    
+                static variable in class      -->  Shared by all objects                            
+                static function in class      -->  Called without object; only accesses static data 
+                static global var/function    -->  File-level scope only                            
+
+

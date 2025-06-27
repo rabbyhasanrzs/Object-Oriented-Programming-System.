@@ -1,0 +1,18 @@
+
+//------------------------------- Object Oriented Programming System -----------------------------//
+
+1 ------>>
+     Class and Objects : 
+                          
+                    --> Objects are entities in the real world.
+                    --> Class is like a blueprint of these entities/class is a group of objects.
+                    --> syntax : 
+                               class class_name {
+                                    --> Properties/attributes
+                                    --> Method/function/member function
+                               };
+
+    Access Modifier :
+                    --> Private : Data and Method Accessible inside class.
+                    --> Public : Data and Method Accessible to everyone.
+                    --> Protected : Data and Method Accessible inside class and to its derived class.

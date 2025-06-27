@@ -1,0 +1,87 @@
+
+
+// Polymorphism :
+
+        -> Polymorphism means "many forms."
+        -> In programming, it allows one function, method, or object to behave in different ways, depending on the
+           context.
+
+        -> Polymorphism means the same function or method can perform different behaviors depending on the object or input.
+        -> It helps write clean,flexible,and reusable code.
+
+// Types of Polymorphism:
+            -> Compile time Polymorphism.
+                EX:
+                 1) Constructor Overloading.
+                 2) Function Overloading.
+                 3) Operator Operator.
+
+            -> Run time Polymorphism/ Dynamic Polymorphism
+                 1) Function Overriding.
+                    -> Parent & Child both contain the same function with different implementation. The parent class function is said to be overridden. 
+                 2) Virtual Function.
+                    -> A Virtual function is a member function that you expect to be redefined in derived classes. 
+
+                    1) Virtual function are Dynamic in nature.
+                    2) Defined by the keyword "virtual" inside a
+                       base class and are always declared with a base class and overridden in a child class.
+                    3) A virtual function is called during Runtime.
+
+
+            // 1. Compile-time Polymorphism (Static)
+
+                        1) Achieved using Constructor overloading,function overloading or operator overloading.
+                        2) The decision happens at compile time.
+
+            // Example:
+
+                            class Print {
+                            public:
+                                void show(int a) {
+                                    cout << "Integer: " << a << endl;
+                                }
+
+                                void show(string s) {
+                                    cout << "String: " << s << endl;
+                                }
+                            };
+
+            // 2. Runtime Polymorphism (Dynamic)
+
+                        1) Achieved using inheritance and virtual functions.
+                        2) The decision happens at runtime.
+
+            // Example:
+
+                            class Animal {
+                            public:
+                                virtual void sound() {
+                                    cout << "Animal sound" << endl;
+                                }
+                            };
+
+                            class Dog : public Animal {
+                            public:
+                                void sound() override {
+                                    cout << "Bark" << endl;
+                                }
+};
+
+
+
+// Polymorphism allows:
+
+            Same method name to perform different tasks.
+            One interface to be used for different types of objects.
+
+//  Types of Polymorphism:
+
+
+
+// Benefits:
+
+            1) Code reusability.
+            2) Flexibility and scalability.
+            3) Easier to maintain and extend.
+
+

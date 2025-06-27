@@ -1,0 +1,53 @@
+
+
+
+// Encapsulation :
+           --> Encapsulation is a wrapping up of data & member function in a single unit called class 
+           --> Encapsulation is using for data hiding.
+
+// What is Encapsulation?
+           --> Encapsulation means wrapping data (variables) and the code (methods) that works on the data into a
+               single unit, like a class.
+           --> It also means protecting the data by making it private and controlling access using getters and setters.
+
+// Real-Life Example:
+     -> Think of a capsule medicine:
+            1) All the ingredients are wrapped inside one capsule.
+            2) You can't see or directly access what's inside.
+            3) You use it without knowing the inner details.
+        That’s exactly what encapsulation does in programming!
+
+// In Programming:
+            Data = private (can’t access directly from outside)
+            Access = through methods (getters/setters)
+
+// Benefits of Encapsulation:
+            1) Protects data from direct modification.
+            2) Allows you to control how values are set (like validating inputs).
+            3) Helps in maintaining and debugging code.
+            4) Makes the code secure and modular.
+
+// Example in C++:
+
+                            class Student {
+                            private:
+                                int age;
+
+                            public:
+                                void setAge(int a) {
+                                    if (a > 0)
+                                        age = a;
+                                }
+
+                                int getAge() {
+                                    return age;
+                                }
+                            };
+                            
+            -> age is private: can’t be accessed directly.
+            -> setAge() and getAge() are public: safe access is allowed.
+
+// Summary:
+            Encapsulation = Data Hiding + Access Control
+            It keeps the data safe and controlled inside a class, and only allows access through defined methods.
+

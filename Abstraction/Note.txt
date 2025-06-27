@@ -1,0 +1,56 @@
+
+// Abstraction:   
+               -> Hiding all unnecessary details & showing only the important parts.
+               -> Abstraction means hiding complex details and showing only the important parts to the user.
+               -> Abstraction hides complex logic and shows only what is necessary. It helps in simplifying code,
+                  improving security, and making programs easier to manage.
+
+ Access modifier / specifier they are a way of implementing Abstraction.
+ The other way is -> using Abstract classes.
+                  1) Abstract classes are used to provide a base class from 
+                     which classes can be derived.
+                  2) They cannot be instantiated/create object and are meant to be inherited.
+                  3) Abstract classes are typically used to define an interface 
+                     for derived classes.
+
+
+
+// Real-Life Example:
+
+                 1) When you drive a car, you just use the steering wheel, brake, and accelerator.
+                 2) You don’t need to know how the engine works inside.
+                 That’s abstraction — you see what you need, and the rest is hidden.
+
+
+//   In object-oriented programming (like C++, Java):
+
+                 1) Abstraction lets you hide internal code (like how a method works).
+                 2) You only expose essential features through classes, methods, etc.
+
+// Benefits:
+
+                  1) Simplifies complex systems.
+                  2) Improves code readability.
+                  3) Makes code secure by hiding unnecessary details.
+                  4) Makes it easier to maintain and update.
+
+// Example in C++:
+
+                  class Animal {
+                  public:
+                     virtual void makeSound() = 0;  // Abstract method (pure virtual)
+                  };
+
+                  class Dog : public Animal {
+                  public:
+                     void makeSound() {
+                        cout << "Bark!" << endl;
+                     }
+                  };
+
+
+                  Here, "Animal" is abstract (you can’t create an object of it).
+                  "Dog" implements the actual sound — only the necessary part is shown.
+
+
+
